@@ -1,3 +1,7 @@
 select distinct City
 from station
-where city like in ('ei%' or 'a%' or 'i%' or 'o%' or 'u%');
+where city like 'A%' 
+  or city like 'E%'  
+  or city like 'I%'  
+  or city like 'O%'
+  or city like 'U%';
