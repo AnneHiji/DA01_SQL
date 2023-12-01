@@ -14,4 +14,7 @@ SELECT X,Y,Z,
     ELSE 'NO'
 END AS Triangle
 FROM Triangle;
---EX3
+--EX4
+SELECT DISTINCT NAME
+FROM Customer
+WHERE referee_id !=2
