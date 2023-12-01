@@ -1,0 +1,17 @@
+--EX1
+SELECT A.CASE, COUNT(A.CASE)
+FROM (SELECT
+CASE
+when device_type = 'laptop' then 'laptop_views'
+ELSE 'mobile_views'
+END
+FROM viewership) AS A
+GROUP BY A.CASE;
+--EX2 
+SELECT X,Y,Z,
+    CASE
+    WHEN (x + y > z AND x + z > y AND y + z > x) THEN 'YES'
+    ELSE 'NO'
+END AS Triangle
+FROM Triangle;
+--EX3
