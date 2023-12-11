@@ -28,7 +28,7 @@ LEFT JOIN age_breakdown B
 ON A.user_id=B.user_id
 GROUP BY B.age_bucket)
 
---4: https://datalemur.com/questions/supercloud-customer
+--EX4: https://datalemur.com/questions/supercloud-customer
 SELECT customer_id
 FROM ( 
 SELECT A.*, B.product_category
@@ -38,4 +38,15 @@ ON A.product_id = B.product_id)
 GROUP BY customer_id
 HAVING COUNT(DISTINC product_category)
 = (SELECT COUNT(DISTINC product_category) FROM products;
+
+--EX5:https://leetcode.com/problems/the-number-of-employees-which-report-to-each-employee/
+SELECT A.employee_id, 
+       A.NAME, 
+       Count(B.reports_to)  AS reports_count, 
+       Round(Avg(B.age), 0) AS average_age 
+FROM employees A
+INNER JOIN employees B 
+ON A.employee_id = B.reports_to 
+GROUP BY A.employee_id, A.NAME 
+ORDER BY A.employee_id ASC; 
 
