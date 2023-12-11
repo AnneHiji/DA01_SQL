@@ -26,7 +26,7 @@ SUM(CASE WHEN A.activity_type = 'SEND' THEN TIMESPENT ELSE 0 END) AS TIME_SEND
 FROM activities A
 LEFT JOIN age_breakdown B
 ON A.user_id=B.user_id
-GROUP BY B.age_bucket)
+GROUP BY B.age_bucket);
 
 --EX4: https://datalemur.com/questions/supercloud-customer
 SELECT customer_id
@@ -49,4 +49,24 @@ INNER JOIN employees B
 ON A.employee_id = B.reports_to 
 GROUP BY A.employee_id, A.NAME 
 ORDER BY A.employee_id ASC; 
+
+--EX6: https://leetcode.com/problems/list-the-products-ordered-in-a-period/?envType=study-plan-v2&envId=top-sql-50
+
+SELECT A.product_name, SUM(B.unit) [unit]
+FROM Products A 
+JOIN Orders B 
+ON A.product_id = B.product_id
+WHERE MONTH(B.order_date) = 2
+AND YEAR(B.order_date) = 2020
+GROUP BY A.product_name
+HAVING SUM(B.unit) >= 100;
+
+--EX7: https://datalemur.com/questions/sql-page-with-no-likes
+
+SELECT A.page_id 
+FROM pages A
+LEFT JOIN page_likes B
+ON A.page_id = B.page_id
+GROUP BY A.page_id
+HAVING COUNT(B.page_id) = 0;
 
