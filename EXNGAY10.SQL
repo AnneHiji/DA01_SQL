@@ -29,4 +29,13 @@ ON A.user_id=B.user_id
 GROUP BY B.age_bucket)
 
 --4: https://datalemur.com/questions/supercloud-customer
+SELECT customer_id
+FROM ( 
+SELECT A.*, B.product_category
+FROM customer_contracts A
+LEFT JOIN products B
+ON A.product_id = B.product_id)
+GROUP BY customer_id
+HAVING COUNT(DISTINC product_category)
+= (SELECT COUNT(DISTINC product_category) FROM products;
 
